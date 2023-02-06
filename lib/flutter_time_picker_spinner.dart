@@ -244,6 +244,7 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
         ),
       ),
       spacer(),
+      Text(" : "),
       SizedBox(
         width: _getItemWidth(),
         height: _getItemHeight()! * 3,
