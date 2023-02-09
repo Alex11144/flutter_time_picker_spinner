@@ -169,7 +169,7 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
   }
 
   bool isLoop(int value) {
-    return value >= 10;
+    return value > 8;
   }
 
   DateTime getDateTime() {
