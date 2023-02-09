@@ -169,14 +169,14 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
   }
 
   bool isLoop(int value) {
-    return value > 8;
+    return value > 11;
   }
 
   DateTime getDateTime() {
     int hour = currentSelectedHourIndex - _getHourCount();
     if (!widget.is24HourMode && currentSelectedAPIndex == 2) hour += 12;
     int minute = (currentSelectedMinuteIndex -
-            _getMinuteCount() ) *
+            (isLoop(_getMinuteCount()) ? _getMinuteCount() : 1)) *
         widget.minutesInterval;
     int second = (currentSelectedSecondIndex -
             (isLoop(_getSecondCount()) ? _getSecondCount() : 1)) *
@@ -324,18 +324,18 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
         if (scrollNotification is UserScrollNotification) {
           if (scrollNotification.direction.toString() ==
               "ScrollDirection.idle") {
-//             if (isLoop(max)) {
-//               int segment = (selectedIndex / max).floor();
-//               if (segment == 0) {
-//                 onUpdateSelectedIndex(selectedIndex + max);
-//                 controller
-//                     .jumpTo(controller.offset + (max * _getItemHeight()!));
-//               } else if (segment == 2) {
-//                 onUpdateSelectedIndex(selectedIndex - max);
-//                 controller
-//                     .jumpTo(controller.offset - (max * _getItemHeight()!));
-//               }
-//             }
+            if (isLoop(max)) {
+              int segment = (selectedIndex / max).floor();
+              if (segment == 0) {
+                onUpdateSelectedIndex(selectedIndex + max);
+                controller
+                    .jumpTo(controller.offset + (max * _getItemHeight()!));
+              } else if (segment == 2) {
+                onUpdateSelectedIndex(selectedIndex - max);
+                controller
+                    .jumpTo(controller.offset - (max * _getItemHeight()!));
+              }
+            }
             setState(() {
               onScrollEnd();
               if (widget.onTimeChange != null) {
