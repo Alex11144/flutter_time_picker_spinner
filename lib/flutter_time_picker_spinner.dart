@@ -353,9 +353,11 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
       child: ListView.builder(
         itemBuilder: (context, index) {
           String text = '';
-          if (isLoop(max)) {
-            text = ((index % max) * interval).toString();
-          } else if (index != 0 && index != max + 1) {
+            // if (isLoop(max)) {
+          //   text = ((index % max) * interval).toString();
+          // } 
+          
+           if (index != 0 && index != max + 1) {
             text = (((index - 1) % max) * interval).toString();
           }
           if (!widget.is24HourMode &&
