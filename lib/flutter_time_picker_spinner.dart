@@ -197,7 +197,7 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
 
     currentSelectedMinuteIndex =
         (currentTime!.minute / widget.minutesInterval).floor() +
-            (isLoop(_getMinuteCount()) ? _getMinuteCount() : 1);
+            _getMinuteCount() );
     minuteController = ScrollController(
         initialScrollOffset:
             (currentSelectedMinuteIndex - 1) * _getItemHeight()!);
@@ -324,18 +324,18 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
         if (scrollNotification is UserScrollNotification) {
           if (scrollNotification.direction.toString() ==
               "ScrollDirection.idle") {
-            if (isLoop(max)) {
-              int segment = (selectedIndex / max).floor();
-              if (segment == 0) {
-                onUpdateSelectedIndex(selectedIndex + max);
-                controller
-                    .jumpTo(controller.offset + (max * _getItemHeight()!));
-              } else if (segment == 2) {
-                onUpdateSelectedIndex(selectedIndex - max);
-                controller
-                    .jumpTo(controller.offset - (max * _getItemHeight()!));
-              }
-            }
+//             if (isLoop(max)) {
+//               int segment = (selectedIndex / max).floor();
+//               if (segment == 0) {
+//                 onUpdateSelectedIndex(selectedIndex + max);
+//                 controller
+//                     .jumpTo(controller.offset + (max * _getItemHeight()!));
+//               } else if (segment == 2) {
+//                 onUpdateSelectedIndex(selectedIndex - max);
+//                 controller
+//                     .jumpTo(controller.offset - (max * _getItemHeight()!));
+//               }
+//             }
             setState(() {
               onScrollEnd();
               if (widget.onTimeChange != null) {
